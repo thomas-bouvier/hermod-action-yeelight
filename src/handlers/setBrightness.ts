@@ -2,16 +2,7 @@ import { Handler } from './index'
 import { yeeFactory, i18nFactory } from '../factories'
 import { NluSlot, slotType } from 'yeelight-node-binding'
 import { message } from '../utils'
-
-async function getCurrentBrightness(yeelight): Promise<number> {
-    const currentBrightness = JSON.parse(await yeelight.get_prop('bright'))
-
-    if (currentBrightness.hasOwnProperty('result')) {
-        return currentBrightness.result[0]
-    }
-
-    return 0
-}
+import { utils } from '../utils/yeelight'
 
 export const setBrightnessHandler: Handler = async function (msg, flow) {
     const i18n = i18nFactory.get()
@@ -29,18 +20,16 @@ export const setBrightnessHandler: Handler = async function (msg, flow) {
     }
 
     // Getting the integer value
-    const brightness: number = percentageSlot.value.value
+    const brightness: number = Math.abs(percentageSlot.value.value)
 
     // Getting the current brightness
-    const currentBrightness = await getCurrentBrightness(yeelight)
+    const currentBrightness = await utils.getCurrentBrightness(yeelight)
 
     // Setting the brightness
     yeelight.set_bright(brightness)
 
-    flow.end()
-
     // Setting the right key accordingly
-    let key = 'brightness.'
+    let key = 'yeelight.setBrightness.'
 
     if (brightness > currentBrightness) {
         key += 'increased'
@@ -50,6 +39,7 @@ export const setBrightnessHandler: Handler = async function (msg, flow) {
         key += 'same'
     }
 
+    flow.end()
     return i18n(key, {
         percentage: brightness
     })

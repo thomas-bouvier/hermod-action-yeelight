@@ -7,5 +7,5 @@ export const turnOffHandler: Handler = async function (msg, flow) {
     yeeFactory.get().set_power('off')
 
     flow.end()
-    return i18n('turnOff.updated')
+    return i18n('yeelight.turnOff.updated')
 }

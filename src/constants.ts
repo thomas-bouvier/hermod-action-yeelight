@@ -5,3 +5,4 @@ export const LANGUAGE_MAPPINGS = {
     english: 'en',
     french: 'fr'
 }
+export const DEFAULT_SHIFT_AMOUNT = 25

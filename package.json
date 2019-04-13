@@ -7,7 +7,7 @@
     "start": "npm run lint && npm run build && npm run test",
     "build": "npm run clean && tsc",
     "watch": "tsc -w",
-    "dev": "tsc-watch --noClear --onSuccess \"node action-snips.js\"",
+    "dev": "tsc-watch --noClear --onSuccess \"node action-yeelight.js\"",
     "lint": "eslint \"**/*.js\" \"**/*.ts\"",
     "test": "jest '^.*\\.spec\\.[jt]s$'",
     "clean": "rimraf dist"

@@ -8,6 +8,8 @@
 sh setup.sh
 ```
 
+Don't forget to edit the `config.ini` file.
+
 ## Run
 
 - Dev mode:
@@ -23,12 +25,12 @@ npm run dev
 # 1) Lint, transpile and test.
 npm start
 # 2) Run the action.
-node action-snips.js
+node action-yeelight.js
 ```
 
 ## Debug
 
-In the `action-snips.js` file:
+In the `action-yeelight.js` file:
 
 ```js
 // Uncomment this line to print everything

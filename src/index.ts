@@ -18,16 +18,24 @@ export default function ({
 
                 dialog.flows([
                     {
-                        intent: 'setBrightness',
-                        action: handlers.setBrightness
-                    },
-                    {
                         intent: 'turnOn',
                         action: handlers.turnOn
                     },
                     {
                         intent: 'turnOff',
                         action: handlers.turnOff
+                    },
+                    {
+                        intent: 'setBrightness',
+                        action: handlers.setBrightness
+                    },
+                    {
+                        intent: 'shiftDown',
+                        action: handlers.shiftDown
+                    },
+                    {
+                        intent: 'shiftUp',
+                        action: handlers.shiftUp
                     }
                 ])
                 resolve(done)

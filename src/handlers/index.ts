@@ -1,7 +1,9 @@
 import { translation, logger } from '../utils'
-import { setBrightnessHandler } from './setBrightness'
 import { turnOnHandler } from './turnOn'
 import { turnOffHandler } from './turnOff'
+import { setBrightnessHandler } from './setBrightness'
+import { shiftDownHandler } from './shiftDown'
+import { shiftUpHandler } from './shiftUp'
 import { FlowContinuation, IntentMessage, FlowActionReturn } from 'hermes-javascript'
 
 export type Handler = (
@@ -31,7 +33,9 @@ const handlerWrapper = (handler: Handler): Handler => (
 
 // Add handlers here, and wrap them.
 export default {
-    setBrightness: handlerWrapper(setBrightnessHandler),
     turnOn: handlerWrapper(turnOnHandler),
-    turnOff: handlerWrapper(turnOffHandler)
+    turnOff: handlerWrapper(turnOffHandler),
+    setBrightness: handlerWrapper(setBrightnessHandler),
+    shiftDown: handlerWrapper(shiftDownHandler),
+    shiftUp: handlerWrapper(shiftUpHandler)
 }

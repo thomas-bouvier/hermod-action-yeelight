@@ -16,6 +16,7 @@ export const translation = {
             return 'Oops, something went wrong.'
         }
     },
+
     // Takes an array from the i18n and returns a random item.
     randomTranslation (key: string | string[], opts: {[key: string]: any}): string {
         const i18n = i18nFactory.get()
@@ -24,5 +25,37 @@ export const translation = {
             return possibleValues
         const randomIndex = Math.floor(Math.random() * possibleValues.length)
         return possibleValues[randomIndex]
+    },
+
+    shiftDown(currentBrightness: number, newBrightness: number, shiftAmount): string {
+        const i18n = i18nFactory.get()
+
+        if (currentBrightness === 1) {
+            return i18n('yeelight.shiftDown.minimum')
+        }
+        
+        if (newBrightness < currentBrightness) {
+            return i18n('yeelight.shiftDown.decreased', {
+                percentage: shiftAmount
+            })
+        }
+
+        return ''
+    },
+
+    shiftUp(currentBrightness: number, newBrightness: number, shiftAmount): string {
+        const i18n = i18nFactory.get()
+
+        if (currentBrightness === 100) {
+            return i18n('yeelight.shiftUp.maximum')
+        }
+
+        if (newBrightness > currentBrightness) {
+            return i18n('yeelight.shiftUp.increased', {
+                percentage: shiftAmount
+            })
+        }
+
+        return ''
     }
 }
