@@ -3,6 +3,7 @@ import { yeeFactory } from '../factories'
 import { NluSlot, slotType } from 'hermes-javascript'
 import { message, translation } from '../utils'
 import { COLORS } from '../constants'
+import { utils } from '../utils/yeelight'
 
 export const setColorHandler: Handler = async function (msg, flow) {
     const yeelight = yeeFactory.get()
@@ -20,6 +21,11 @@ export const setColorHandler: Handler = async function (msg, flow) {
 
     // Getting the integer value
     const color: string = colorSlot.value.value
+
+    // Turn on the light if currently off
+    if (!(await utils.getCurrentStatus(yeelight))) {
+        yeelight.set_power('on')
+    }
 
     if (!COLORS[color]) {
         throw new Error('unknownColor')

@@ -1,7 +1,7 @@
 import { logger } from '../utils'
-import { Client } from 'yeelight-node-binding'
+import { Client, Yeelight } from 'yeelight-node-binding'
 
-let yeelight
+let yeelight: Yeelight
 
 function init() {
     const client = new Client()
@@ -15,7 +15,7 @@ function init() {
     })
 }
 
-function get() {
+function get(): Yeelight {
     return yeelight
 }
 
