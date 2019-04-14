@@ -29,50 +29,48 @@ export const translation = {
         return possibleValues[randomIndex]
     },
 
-    setBrightness(currentBrightness: number, newBrightness: number): string {
+    setBrightness(currentBrightness: number, newBrightness: number, wasOff: boolean): string {
         const i18n = i18nFactory.get()
 
-        if (newBrightness > currentBrightness) {
-            return i18n('yeelight.setBrightness.increased')
+        if (!wasOff && newBrightness > currentBrightness) {
+            return i18n('yeelight.setBrightness.increased', {
+                percentage: newBrightness
+            })
         }
         
-        if (newBrightness < currentBrightness) {
-            return i18n('yeelight.setBrightness.decreased')
+        if (!wasOff && newBrightness < currentBrightness) {
+            return i18n('yeelight.setBrightness.decreased', {
+                percentage: newBrightness
+            })
         }
     
-        return i18n('yeelight.setBrightness.same')
+        return i18n('yeelight.setBrightness.updated', {
+            percentage: newBrightness
+        })
     },
 
-    shiftDown(currentBrightness: number, newBrightness: number, shiftAmount): string {
+    shiftDown(currentBrightness: number, shiftAmount: number): string {
         const i18n = i18nFactory.get()
 
         if (currentBrightness === 1) {
             return i18n('yeelight.shiftDown.minimum')
         }
         
-        if (newBrightness < currentBrightness) {
-            return i18n('yeelight.shiftDown.decreased', {
-                percentage: shiftAmount
-            })
-        }
-
-        return ''
+        return i18n('yeelight.shiftDown.decreased', {
+            percentage: shiftAmount
+        })
     },
 
-    shiftUp(currentBrightness: number, newBrightness: number, shiftAmount): string {
+    shiftUp(currentBrightness: number, shiftAmount: number): string {
         const i18n = i18nFactory.get()
 
         if (currentBrightness === 100) {
             return i18n('yeelight.shiftUp.maximum')
         }
 
-        if (newBrightness > currentBrightness) {
-            return i18n('yeelight.shiftUp.increased', {
-                percentage: shiftAmount
-            })
-        }
-
-        return ''
+        return i18n('yeelight.shiftUp.increased', {
+            percentage: shiftAmount
+        })
     },
 
     setColor(color: string): string {

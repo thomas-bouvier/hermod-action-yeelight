@@ -8,11 +8,13 @@
         "unspecific": "Oops, something went wrong."
     },
     "yeelight": {
+        "dialog": {
+            "off": "The light is currently off."
+        },
         "setBrightness": {
-            "updated": "I updated the brightness to {{ percentage }} percent.",
+            "updated": "I set the brightness to {{ percentage }} percent.",
             "increased": "I increased the brightness to {{ percentage }} percent.",
-            "decreased": "I decreased the brightness to {{ percentage }} percent.",
-            "same": "The brightness is already {{ percentage }} percent."
+            "decreased": "I decreased the brightness to {{ percentage }} percent."
         },
         "shiftDown": {
             "decreased": "I lowered the brightness by {{ percentage }} percent.",

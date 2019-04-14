@@ -25,13 +25,15 @@ export const setBrightnessHandler: Handler = async function (msg, flow) {
     const currentBrightness = await utils.getCurrentBrightness(yeelight)
 
     // Turn on the light if currently off
+    let wasOff: boolean = false
     if (!(await utils.getCurrentStatus(yeelight))) {
         yeelight.set_power('on')
+        wasOff = true
     }
 
     // Setting the brightness
     yeelight.set_bright(newBrightness)
 
     flow.end()
-    return translation.setBrightness(currentBrightness, newBrightness)
+    return translation.setBrightness(currentBrightness, newBrightness, wasOff)
 }

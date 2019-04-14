@@ -1,5 +1,5 @@
 import { Handler } from './index'
-import { yeeFactory } from '../factories'
+import { yeeFactory, i18nFactory } from '../factories'
 import { NluSlot, slotType } from 'hermes-javascript'
 import { message, translation } from '../utils'
 import { utils } from '../utils/yeelight'
@@ -7,6 +7,11 @@ import { DEFAULT_SHIFT_AMOUNT } from '../constants'
 
 export const shiftDownHandler: Handler = async function (msg, flow) {
     const yeelight = yeeFactory.get()
+
+    if (!(await utils.getCurrentStatus(yeelight))) {
+        flow.end()
+        return i18nFactory.get()('yeelight.dialog.off')
+    }
 
     const percentageSlot: NluSlot<slotType.percentage> | null = message.getSlotsByName(msg, 'percent', {
         onlyMostConfident: true,
@@ -35,5 +40,5 @@ export const shiftDownHandler: Handler = async function (msg, flow) {
     yeelight.set_bright(newBrightness)
 
     flow.end()
-    return translation.shiftDown(currentBrightness, newBrightness, shiftAmount)
+    return translation.shiftDown(currentBrightness, shiftAmount)
 }
