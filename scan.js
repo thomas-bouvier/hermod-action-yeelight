@@ -1,6 +1,5 @@
 const { Client } = require('yeelight-node-binding')
 const fs = require('fs')
-const ini = require('ini')
 
 const client = new Client()
 
@@ -18,18 +17,21 @@ async function scan() {
 
     await sleep(5000)
 
-    const config = ini.parse(fs.readFileSync('./config.ini', 'utf-8'))
-
+    let counter = 1
     for (let yeelight of yeelights) {
-        console.log(yeelight.id)
-        config[yeelight.id] = ''
+        console.log('Lamp ' + counter + ':', yeelight.id)
+
+        const id = `lamp_${ counter }_id=${ yeelight.id }`
+        const room = `lamp_${ counter }_room=`
+        
+        fs.appendFileSync('config.ini', `\n${ id }\n${ room }`)
 
         yeelight.set_power('on')
         await sleep(5000)
         yeelight.set_power('off')
-    }
 
-    fs.writeFileSync('./config.ini', ini.stringify(config))
+        counter++
+    }
 
     process.exit()
 }

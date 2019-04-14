@@ -1,14 +1,12 @@
 import { logger } from '../utils'
 import { Client, Yeelight } from 'yeelight-node-binding'
 
-let yeelight: Yeelight
+const yeelights: Yeelight[] = []
 
 function init() {
     const client = new Client()
 
-    client.bind(y => {
-        yeelight = y
-    })
+    client.bind(y => { yeelights.push(y) })
 
     client.on('message', data => {
         logger.debug(data.toString());
@@ -16,10 +14,15 @@ function init() {
 }
 
 function get(): Yeelight {
-    return yeelight
+    return yeelights[0]
+}
+
+function getAll(): Yeelight[] {
+    return yeelights
 }
 
 export const yeeFactory = {
     init,
-    get
+    get,
+    getAll
 }

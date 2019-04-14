@@ -7,7 +7,7 @@ import { SUPPORTED_LOCALES, DEFAULT_LOCALE } from '../constants'
 
 let config: {[key: string]: string} = {}
 
-function init (configOptions = { mock: {}}) {
+function init(configOptions = { mock: {}}) {
     try {
         // Get the config file.
         const configFilePath = path.resolve(__dirname + '/../../config.ini')
