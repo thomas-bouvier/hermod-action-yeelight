@@ -26,7 +26,6 @@ export const shiftUpHandler: Handler = async function (msg, flow) {
     if (percentageSlot) {
         // Getting the integer value
         shiftAmount = Math.abs(percentageSlot.value.value)
-
     } else {
         shiftAmount = DEFAULT_SHIFT_AMOUNT
     }
