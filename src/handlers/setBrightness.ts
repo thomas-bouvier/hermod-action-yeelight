@@ -1,11 +1,10 @@
 import { Handler } from './index'
-import { yeeFactory, i18nFactory } from '../factories'
+import { yeeFactory } from '../factories'
 import { NluSlot, slotType } from 'hermes-javascript'
-import { message } from '../utils'
+import { message, translation } from '../utils'
 import { utils } from '../utils/yeelight'
 
 export const setBrightnessHandler: Handler = async function (msg, flow) {
-    const i18n = i18nFactory.get()
     const yeelight = yeeFactory.get()
 
     const percentageSlot: NluSlot<slotType.percentage> | null = message.getSlotsByName(msg, 'percent', {
@@ -20,27 +19,14 @@ export const setBrightnessHandler: Handler = async function (msg, flow) {
     }
 
     // Getting the integer value
-    const brightness: number = Math.abs(percentageSlot.value.value)
+    const newBrightness: number = Math.abs(percentageSlot.value.value)
 
     // Getting the current brightness
     const currentBrightness = await utils.getCurrentBrightness(yeelight)
 
     // Setting the brightness
-    yeelight.set_bright(brightness)
-
-    // Setting the right key accordingly
-    let key = 'yeelight.setBrightness.'
-
-    if (brightness > currentBrightness) {
-        key += 'increased'
-    } else if (brightness < currentBrightness) {
-        key += 'decreased'
-    } else {
-        key += 'same'
-    }
+    yeelight.set_bright(newBrightness)
 
     flow.end()
-    return i18n(key, {
-        percentage: brightness
-    })
+    return translation.setBrightness(currentBrightness, newBrightness)
 }

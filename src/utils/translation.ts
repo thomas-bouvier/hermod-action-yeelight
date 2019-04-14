@@ -27,6 +27,20 @@ export const translation = {
         return possibleValues[randomIndex]
     },
 
+    setBrightness(currentBrightness: number, newBrightness: number): string {
+        const i18n = i18nFactory.get()
+
+        if (newBrightness > currentBrightness) {
+            return i18n('yeelight.setBrightness.increased')
+        }
+        
+        if (newBrightness < currentBrightness) {
+            return i18n('yeelight.setBrightness.decreased')
+        }
+    
+        return i18n('yeelight.setBrightness.same')
+    },
+
     shiftDown(currentBrightness: number, newBrightness: number, shiftAmount): string {
         const i18n = i18nFactory.get()
 
@@ -57,5 +71,13 @@ export const translation = {
         }
 
         return ''
+    },
+
+    setColor(color: string): string {
+        const i18n = i18nFactory.get()
+
+        return i18n('yeelight.setColor.updated', {
+            color: i18n('colors.' + color)
+        })
     }
 }

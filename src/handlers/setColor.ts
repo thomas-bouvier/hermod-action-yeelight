@@ -1,7 +1,7 @@
 import { Handler } from './index'
 import { yeeFactory } from '../factories'
 import { NluSlot, slotType } from 'hermes-javascript'
-import { message } from '../utils'
+import { message, translation } from '../utils'
 import { COLORS } from '../constants'
 
 export const setColorHandler: Handler = async function (msg, flow) {
@@ -21,9 +21,13 @@ export const setColorHandler: Handler = async function (msg, flow) {
     // Getting the integer value
     const color: string = colorSlot.value.value
 
+    if (!COLORS[color]) {
+        throw new Error('unknownColor')
+    }
+
     // Setting the color
     yeelight.set_rgb(COLORS[color].rgb)
 
     flow.end()
-    return 'color'
+    return translation.setColor(color)
 }

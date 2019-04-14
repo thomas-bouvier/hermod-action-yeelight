@@ -18,27 +18,27 @@ export default function ({
 
                 dialog.flows([
                     {
-                        intent: 'Superuser:turnOn',
+                        intent: 'Superuser:TurnOn',
                         action: handlers.turnOn
                     },
                     {
-                        intent: 'Superuser:turnOff',
+                        intent: 'Superuser:TurnOff',
                         action: handlers.turnOff
                     },
                     {
-                        intent: 'Superuser:setBrightness',
+                        intent: 'Superuser:SetBrightness',
                         action: handlers.setBrightness
                     },
                     {
-                        intent: 'Superuser:shiftDown',
+                        intent: 'Superuser:ShiftDown',
                         action: handlers.shiftDown
                     },
                     {
-                        intent: 'Superuser:shiftUp',
+                        intent: 'Superuser:ShiftUp',
                         action: handlers.shiftUp
                     },
                     {
-                        intent: 'Superuser:setColor',
+                        intent: 'Superuser:SetColor',
                         action: handlers.setColor
                     }
                 ])

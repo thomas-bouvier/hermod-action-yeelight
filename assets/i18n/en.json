@@ -4,8 +4,7 @@
         "config": "Sorry, there was an error with your config file.",
         "locale": "Sorry, there was an error with your language settings.",
         "intentNotRecognized": "Sorry, I did not understand your request.",
-        "APIResponse": "Sorry, there was an issue with the service provider.",
-        "APIRequest": "Sorry, the service provider is unreachable.",
+        "unknownColor": "Sorry, I don't known this color.",
         "unspecific": "Oops, something went wrong."
     },
     "yeelight": {
@@ -28,6 +27,32 @@
         },
         "turnOff": {
             "updated": "I turned the light off."
+        },
+        "setColor": {
+            "updated": "I changed the color to {{ color }}."
         }
+    },
+    "colors": {
+        "ivory": "white",
+        "lightcyan": "cold white",
+        "sandytan": "warm white",
+        "wheat": "candle light",
+        "gold": "yellow",
+        "peru": "orange",
+        "chocolate": "orange",
+        "coral": "light red",
+        "tomato": "red",
+        "pink": "pink",
+        "metallicred": "dark red",
+        "lightpastelpurple": "purple",
+        "indigo": "indigo",
+        "skyblue": "light blue",
+        "steelblue": "light blue",
+        "ultramarine": "blue",
+        "paleturquoise": "blue",
+        "aquamarine": "blue",
+        "lightgreen": "light green",
+        "lime": "lime",
+        "forestgreen": "green"
     }
 }
