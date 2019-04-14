@@ -4,6 +4,7 @@ import { turnOffHandler } from './turnOff'
 import { setBrightnessHandler } from './setBrightness'
 import { shiftDownHandler } from './shiftDown'
 import { shiftUpHandler } from './shiftUp'
+import { setColorHandler } from './setColor'
 import { FlowContinuation, IntentMessage, FlowActionReturn } from 'hermes-javascript'
 
 export type Handler = (
@@ -37,5 +38,6 @@ export default {
     turnOff: handlerWrapper(turnOffHandler),
     setBrightness: handlerWrapper(setBrightnessHandler),
     shiftDown: handlerWrapper(shiftDownHandler),
-    shiftUp: handlerWrapper(shiftUpHandler)
+    shiftUp: handlerWrapper(shiftUpHandler),
+    setColor: handlerWrapper(setColorHandler)
 }

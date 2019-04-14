@@ -1,6 +1,6 @@
 import { Handler } from './index'
 import { yeeFactory, i18nFactory } from '../factories'
-import { NluSlot, slotType } from 'yeelight-node-binding'
+import { NluSlot, slotType } from 'hermes-javascript'
 import { message } from '../utils'
 import { utils } from '../utils/yeelight'
 
