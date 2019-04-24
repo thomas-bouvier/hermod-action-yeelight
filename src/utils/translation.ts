@@ -29,54 +29,54 @@ export const translation = {
         return possibleValues[randomIndex]
     },
 
-    setBrightness(currentBrightness: number, newBrightness: number, wasOff: boolean): string {
+    setBrightnessToSpeech(currentBrightness: number, newBrightness: number, wasOff: boolean): string {
         const i18n = i18nFactory.get()
 
         if (!wasOff && newBrightness > currentBrightness) {
-            return i18n('yeelight.setBrightness.increased', {
+            return i18n('yeelight.setBrightness.single.increased', {
                 percentage: newBrightness
             })
         }
         
         if (!wasOff && newBrightness < currentBrightness) {
-            return i18n('yeelight.setBrightness.decreased', {
+            return i18n('yeelight.setBrightness.single.decreased', {
                 percentage: newBrightness
             })
         }
     
-        return i18n('yeelight.setBrightness.updated', {
+        return i18n('yeelight.setBrightness.single.updated', {
             percentage: newBrightness
         })
     },
 
-    shiftDown(currentBrightness: number, shiftAmount: number): string {
+    shiftDownToSpeech(currentBrightness: number, shiftAmount: number): string {
         const i18n = i18nFactory.get()
 
         if (currentBrightness === 1) {
-            return i18n('yeelight.shiftDown.minimum')
+            return i18n('yeelight.shiftDown.single.minimum')
         }
         
-        return i18n('yeelight.shiftDown.decreased', {
+        return i18n('yeelight.shiftDown.single.decreased', {
             percentage: shiftAmount
         })
     },
 
-    shiftUp(currentBrightness: number, shiftAmount: number): string {
+    shiftUpToSpeech(currentBrightness: number, shiftAmount: number): string {
         const i18n = i18nFactory.get()
 
         if (currentBrightness === 100) {
-            return i18n('yeelight.shiftUp.maximum')
+            return i18n('yeelight.shiftUp.single.maximum')
         }
 
-        return i18n('yeelight.shiftUp.increased', {
+        return i18n('yeelight.shiftUp.single.increased', {
             percentage: shiftAmount
         })
     },
 
-    setColor(color: string): string {
+    setColorToSpeech(color: string): string {
         const i18n = i18nFactory.get()
 
-        return i18n('yeelight.setColor.updated', {
+        return i18n('yeelight.setColor.single.updated', {
             color: i18n('colors.' + color)
         })
     }

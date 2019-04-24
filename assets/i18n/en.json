@@ -9,29 +9,64 @@
     },
     "yeelight": {
         "dialog": {
-            "off": "The light is currently off."
+            "single": {
+                "off": "The light is already off."
+            },
+            "all": {
+                "off": "The lights are already off."
+            }
         },
         "setBrightness": {
-            "updated": "I set the brightness to {{ percentage }} percent.",
-            "increased": "I increased the brightness to {{ percentage }} percent.",
-            "decreased": "I decreased the brightness to {{ percentage }} percent."
+            "single": {
+                "updated": "I set the brightness to {{ percentage }} percent.",
+                "increased": "I increased the brightness to {{ percentage }} percent.",
+                "decreased": "I decreased the brightness to {{ percentage }} percent."
+            },
+            "all": {
+                "updated": "I set the brightness of all lights to {{ percentage }} percent."
+            }
         },
         "shiftDown": {
-            "decreased": "I lowered the brightness by {{ percentage }} percent.",
-            "minimum": "The brightness is already at its lowest level."
+            "single": {
+                "decreased": "I lowered the brightness by {{ percentage }} percent.",
+                "minimum": "The brightness is already at its lowest level."
+            },
+            "all": {
+                "decreased": "I lowered the brightness of all lights."
+            }
         },
         "shiftUp": {
-            "increased": "I increased the brightness by {{ percentage }} percent.",
-            "maximum": "The brightness is already at its highest level."
+            "single": {
+                "increased": "I increased the brightness by {{ percentage }} percent.",
+                "maximum": "The brightness is already at its highest level."
+            },
+            "all": {
+                "increased": "I increased the brightness of all lights."
+            }
         },
         "turnOn": {
-            "updated": "I turned the light on."
+            "single": {
+                "updated": "I turned the light on."
+            },
+            "all": {
+                "updated": "I turned all the lights on."
+            }
         },
         "turnOff": {
-            "updated": "I turned the light off."
+            "single": {
+                "updated": "I turned the light off."
+            },
+            "all": {
+                "updated": "I turned all the lights off."
+            }
         },
         "setColor": {
-            "updated": "I changed the color to {{ color }}."
+            "single": {
+                "updated": "I changed the color to {{ color }}."
+            },
+            "all": {
+                "updated": "I changed all the lights to {{ color }}."
+            }
         }
     },
     "colors": {

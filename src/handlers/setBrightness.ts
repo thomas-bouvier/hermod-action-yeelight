@@ -1,11 +1,13 @@
 import { Handler } from './index'
-import { yeeFactory } from '../factories'
 import { NluSlot, slotType } from 'hermes-javascript'
 import { message, translation } from '../utils'
 import { utils } from '../utils/yeelight'
+import { Yeelight } from 'yeelight-node-binding'
+import { i18nFactory } from '../factories'
 
 export const setBrightnessHandler: Handler = async function (msg, flow) {
-    const yeelight = yeeFactory.get()
+    const i18n = i18nFactory.get()
+    let yeelights: Yeelight[]
 
     const percentageSlot: NluSlot<slotType.percentage> | null = message.getSlotsByName(msg, 'percent', {
         onlyMostConfident: true,
@@ -21,19 +23,48 @@ export const setBrightnessHandler: Handler = async function (msg, flow) {
     // Getting the integer value
     const newBrightness: number = Math.abs(percentageSlot.value.value)
 
-    // Getting the current brightness
-    const currentBrightness = await utils.getCurrentBrightness(yeelight)
+    const roomsSlot: NluSlot<slotType.custom> | null = message.getSlotsByName(msg, 'house_room', {
+        onlyMostConfident: true,
+        threshold: 0.5
+    })
 
-    // Turn on the light if currently off
-    let wasOff: boolean = false
-    if (!(await utils.getCurrentStatus(yeelight))) {
-        yeelight.set_power('on')
-        wasOff = true
+    if (roomsSlot) {
+        yeelights = utils.getLightsFromRoom(roomsSlot.value.value)
+    } else {
+        yeelights = utils.getAllLights()
     }
 
-    // Setting the brightness
-    yeelight.set_bright(newBrightness)
+    if (yeelights.length === 1) {
+        const yeelight = yeelights[0]
 
-    flow.end()
-    return translation.setBrightness(currentBrightness, newBrightness, wasOff)
+        // Getting the current brightness
+        const currentBrightness = await utils.getCurrentBrightness(yeelight)
+
+        // Turn on the light if currently off
+        let wasOff: boolean = false
+        if (!(await utils.getCurrentStatus(yeelight))) {
+            yeelight.set_power('on')
+            wasOff = true
+        }
+
+        // Setting the brightness
+        yeelight.set_bright(newBrightness)
+
+        flow.end()
+        return translation.setBrightnessToSpeech(currentBrightness, newBrightness, wasOff)
+    } else {
+        for (let yeelight of yeelights) {
+            if (!(await utils.getCurrentStatus(yeelight))) {
+                yeelight.set_power('on')
+            }
+    
+            // Setting the brightness
+            yeelight.set_bright(newBrightness)
+        }
+
+        flow.end()
+        return i18n('yeelight.setBrightness.all.updated', {
+            percentage: newBrightness
+        })
+    }
 }

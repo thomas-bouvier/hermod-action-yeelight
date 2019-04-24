@@ -1,12 +1,12 @@
 import { Handler } from './index'
-import { yeeFactory } from '../factories'
 import { NluSlot, slotType } from 'hermes-javascript'
 import { message, translation } from '../utils'
 import { COLORS } from '../constants'
 import { utils } from '../utils/yeelight'
+import { Yeelight } from 'yeelight-node-binding'
 
 export const setColorHandler: Handler = async function (msg, flow) {
-    const yeelight = yeeFactory.get()
+    let yeelights: Yeelight[]
 
     const colorSlot: NluSlot<slotType.custom> | null = message.getSlotsByName(msg, 'color', {
         onlyMostConfident: true,
@@ -22,18 +22,32 @@ export const setColorHandler: Handler = async function (msg, flow) {
     // Getting the integer value
     const color: string = colorSlot.value.value
 
-    // Turn on the light if currently off
-    if (!(await utils.getCurrentStatus(yeelight))) {
-        yeelight.set_power('on')
-    }
-
     if (!COLORS[color]) {
         throw new Error('unknownColor')
     }
 
-    // Setting the color
-    yeelight.set_rgb(COLORS[color].rgb)
+    const roomsSlot: NluSlot<slotType.custom> | null = message.getSlotsByName(msg, 'house_room', {
+        onlyMostConfident: true,
+        threshold: 0.5
+    })
+
+    if (roomsSlot) {
+        yeelights = utils.getLightsFromRoom(roomsSlot.value.value)
+    } else {
+        yeelights = utils.getAllLights()
+    }
+
+    for (let yeelight of yeelights) {
+        // Turn on the light if currently off
+        if (!(await utils.getCurrentStatus(yeelight))) {
+            yeelight.set_power('on')
+        }
+
+        // Setting the color
+        yeelight.set_rgb(COLORS[color].rgb)
+    }
 
     flow.end()
-    return translation.setColor(color)
+    return ''
+    //return translation.setColor(color)
 }

@@ -40,5 +40,5 @@ export const shiftDownHandler: Handler = async function (msg, flow) {
     yeelight.set_bright(newBrightness)
 
     flow.end()
-    return translation.shiftDown(currentBrightness, shiftAmount)
+    return translation.shiftDownToSpeech(currentBrightness, shiftAmount)
 }
