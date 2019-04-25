@@ -1,11 +1,13 @@
 import { Handler } from './index'
 import { NluSlot, slotType } from 'hermes-javascript'
 import { message, translation } from '../utils'
-import { COLORS } from '../constants'
 import { utils } from '../utils/yeelight'
+import { COLORS } from '../constants'
 import { Yeelight } from 'yeelight-node-binding'
+import { i18nFactory } from '../factories'
 
 export const setColorHandler: Handler = async function (msg, flow) {
+    const i18n = i18nFactory.get()
     let yeelights: Yeelight[]
 
     const colorSlot: NluSlot<slotType.custom> | null = message.getSlotsByName(msg, 'color', {
@@ -37,7 +39,9 @@ export const setColorHandler: Handler = async function (msg, flow) {
         yeelights = utils.getAllLights()
     }
 
-    for (let yeelight of yeelights) {
+    if (yeelights.length === 1) {
+        const yeelight = yeelights[0]
+
         // Turn on the light if currently off
         if (!(await utils.getCurrentStatus(yeelight))) {
             yeelight.set_power('on')
@@ -45,9 +49,22 @@ export const setColorHandler: Handler = async function (msg, flow) {
 
         // Setting the color
         yeelight.set_rgb(COLORS[color].rgb)
-    }
 
-    flow.end()
-    return ''
-    //return translation.setColor(color)
+        flow.end()
+        return translation.setColorToSpeech(color)
+    } else {
+        for (let yeelight of yeelights) {
+            if (!(await utils.getCurrentStatus(yeelight))) {
+                yeelight.set_power('on')
+            }
+    
+            // Setting the color
+            yeelight.set_rgb(COLORS[color].rgb)
+        }
+
+        flow.end()
+        return i18n('yeelight.setColor.all.updated', {
+            color: i18n('colors.' + color)
+        })
+    }
 }

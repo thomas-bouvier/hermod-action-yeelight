@@ -1,25 +1,19 @@
 import { Handler } from './index'
-import { yeeFactory, i18nFactory } from '../factories'
 import { NluSlot, slotType } from 'hermes-javascript'
 import { message, translation } from '../utils'
 import { utils } from '../utils/yeelight'
+import { Yeelight } from 'yeelight-node-binding'
 import { DEFAULT_SHIFT_AMOUNT } from '../constants'
+import { i18nFactory } from '../factories'
 
 export const shiftUpHandler: Handler = async function (msg, flow) {
-    const yeelight = yeeFactory.get()
-
-    if (!(await utils.getCurrentStatus(yeelight))) {
-        flow.end()
-        return i18nFactory.get()('yeelight.dialog.off')
-    }
+    const i18n = i18nFactory.get()
+    let yeelights: Yeelight[]
 
     const percentageSlot: NluSlot<slotType.percentage> | null = message.getSlotsByName(msg, 'percent', {
         onlyMostConfident: true,
         threshold: 0.5
     })
-
-    // Getting the current brightness
-    const currentBrightness = await utils.getCurrentBrightness(yeelight)
 
     let shiftAmount: number
 
@@ -30,14 +24,53 @@ export const shiftUpHandler: Handler = async function (msg, flow) {
         shiftAmount = DEFAULT_SHIFT_AMOUNT
     }
 
-    let newBrightness = currentBrightness + shiftAmount
-    if (newBrightness > 100) {
-        newBrightness = 100
+    const roomsSlot: NluSlot<slotType.custom> | null = message.getSlotsByName(msg, 'house_room', {
+        onlyMostConfident: true,
+        threshold: 0.5
+    })
+
+    if (roomsSlot) {
+        yeelights = utils.getLightsFromRoom(roomsSlot.value.value)
+    } else {
+        yeelights = utils.getAllLights()
     }
 
-    // Setting the brightness
-    yeelight.set_bright(newBrightness)
+    if (yeelights.length === 1) {
+        const yeelight = yeelights[0]
 
-    flow.end()
-    return translation.shiftUpToSpeech(currentBrightness, shiftAmount)
+        if (!(await utils.getCurrentStatus(yeelight))) {
+            flow.end()
+            return i18n('yeelight.dialog.single.off')
+        }
+
+        // Getting the current brightness
+        const currentBrightness = await utils.getCurrentBrightness(yeelight)
+
+        let newBrightness = currentBrightness + shiftAmount
+        if (newBrightness > 100) {
+            newBrightness = 100
+        }
+
+        // Setting the brightness
+        yeelight.set_bright(newBrightness)
+
+        flow.end()
+        return translation.shiftUpToSpeech(currentBrightness, shiftAmount)
+    } else {
+        for (let yeelight of yeelights) {
+            // Getting the current brightness
+            const currentBrightness = await utils.getCurrentBrightness(yeelight)
+
+            let newBrightness = currentBrightness + shiftAmount
+            if (newBrightness > 100) {
+                newBrightness = 100
+            }
+
+            // Setting the brightness
+            yeelight.set_bright(newBrightness)
+        }
+
+        flow.end()
+        return i18n('yeelight.shiftUp.all.increased')
+    }
 }
