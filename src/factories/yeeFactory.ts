@@ -9,7 +9,7 @@ function init() {
     client.bind(y => { yeelights.push(y) })
 
     client.on('message', data => {
-        logger.debug(data.toString());
+        logger.debug(data.toString())
     })
 }
 

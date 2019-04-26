@@ -9,13 +9,12 @@ export const turnOffHandler: Handler = async function (msg, flow) {
     const i18n = i18nFactory.get()
     let yeelights: Yeelight[]
 
-    const roomsSlot: NluSlot<slotType.custom> | null = message.getSlotsByName(msg, 'house_room', {
-        onlyMostConfident: true,
+    const roomsSlot: NluSlot<slotType.custom>[] | null = message.getSlotsByName(msg, 'house_room', {
         threshold: 0.5
     })
 
-    if (roomsSlot) {
-        yeelights = utils.getLightsFromRoom(roomsSlot.value.value)
+    if (roomsSlot && roomsSlot.length > 0) {
+        yeelights = utils.getLightsFromRoom(roomsSlot.map(x => x.value.value))
     } else {
         yeelights = utils.getAllLights()
     }

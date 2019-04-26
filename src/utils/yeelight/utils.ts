@@ -6,17 +6,17 @@ function getAllLights(): Yeelight[] {
     return yeeFactory.getAll()
 }
 
-function getLightsFromRoom(room: string): Yeelight[] {
+function getLightsFromRoom(rooms: string[]): Yeelight[] {
     const config = configFactory.get()
     const yeelights = yeeFactory.getAll()
 
     const ret: Yeelight[] = []
 
     for (let yeelight of yeelights) {
-        for (let i = 1; ; i++) {
+        for (let i = 1;; i++) {
             const key = `lamp${ i }Id`
             if (config[key]) {
-                if (config[key] === yeelight.id && config[`lamp${ i }Room`] === room) {
+                if (config[key] === yeelight.id && rooms.includes(config[`lamp${ i }Room`])) {
                     ret.push(yeelight)
                 }
             } else {

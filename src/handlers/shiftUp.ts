@@ -24,13 +24,12 @@ export const shiftUpHandler: Handler = async function (msg, flow) {
         shiftAmount = DEFAULT_SHIFT_AMOUNT
     }
 
-    const roomsSlot: NluSlot<slotType.custom> | null = message.getSlotsByName(msg, 'house_room', {
-        onlyMostConfident: true,
+    const roomsSlot: NluSlot<slotType.custom>[] | null = message.getSlotsByName(msg, 'house_room', {
         threshold: 0.5
     })
 
     if (roomsSlot) {
-        yeelights = utils.getLightsFromRoom(roomsSlot.value.value)
+        yeelights = utils.getLightsFromRoom(roomsSlot.map(x => x.value.value))
     } else {
         yeelights = utils.getAllLights()
     }

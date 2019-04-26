@@ -23,13 +23,12 @@ export const setBrightnessHandler: Handler = async function (msg, flow) {
     // Getting the integer value
     const newBrightness: number = Math.abs(percentageSlot.value.value)
 
-    const roomsSlot: NluSlot<slotType.custom> | null = message.getSlotsByName(msg, 'house_room', {
-        onlyMostConfident: true,
+    const roomsSlot: NluSlot<slotType.custom>[] | null = message.getSlotsByName(msg, 'house_room', {
         threshold: 0.5
     })
 
     if (roomsSlot) {
-        yeelights = utils.getLightsFromRoom(roomsSlot.value.value)
+        yeelights = utils.getLightsFromRoom(roomsSlot.map(x => x.value.value))
     } else {
         yeelights = utils.getAllLights()
     }
