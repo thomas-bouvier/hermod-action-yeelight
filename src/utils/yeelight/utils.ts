@@ -15,7 +15,7 @@ function getLightsFromRoom(rooms: string[]): Yeelight[] {
     for (let yeelight of yeelights) {
         for (let i = 1;; i++) {
             const key = `lamp${ i }Id`
-            if (config[key]) {
+            if (config[key]) {
                 if (config[key] === yeelight.id && rooms.includes(config[`lamp${ i }Room`])) {
                     ret.push(yeelight)
                 }

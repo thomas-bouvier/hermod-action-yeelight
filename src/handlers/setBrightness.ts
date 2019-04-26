@@ -52,7 +52,7 @@ export const setBrightnessHandler: Handler = async function (msg, flow) {
         flow.end()
         return translation.setBrightnessToSpeech(currentBrightness, newBrightness, wasOff)
     } else {
-        for (let yeelight of yeelights) {
+        for (let yeelight of yeelights) {
             if (!(await utils.getCurrentStatus(yeelight))) {
                 yeelight.set_power('on')
             }

@@ -56,7 +56,7 @@ export const shiftDownHandler: Handler = async function (msg, flow) {
         flow.end()
         return translation.shiftDownToSpeech(currentBrightness, shiftAmount)
     } else {
-        for (let yeelight of yeelights) {
+        for (let yeelight of yeelights) {
             // Getting the current brightness
             const currentBrightness = await utils.getCurrentBrightness(yeelight)
 

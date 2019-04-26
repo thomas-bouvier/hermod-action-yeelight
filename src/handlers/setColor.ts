@@ -52,7 +52,7 @@ export const setColorHandler: Handler = async function (msg, flow) {
         flow.end()
         return translation.setColorToSpeech(color)
     } else {
-        for (let yeelight of yeelights) {
+        for (let yeelight of yeelights)  {
             if (!(await utils.getCurrentStatus(yeelight))) {
                 yeelight.set_power('on')
             }
