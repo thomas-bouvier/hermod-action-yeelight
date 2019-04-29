@@ -31,7 +31,7 @@ export const shiftUpHandler: Handler = async function (msg, flow) {
     if (roomsSlot) {
         yeelights = utils.getLightsFromRoom(roomsSlot.map(x => x.value.value))
     } else {
-        yeelights = utils.getAllLights()
+        yeelights = utils.getAllLights(msg.siteId)
     }
 
     if (yeelights.length === 1) {

@@ -16,7 +16,7 @@ export const turnOffHandler: Handler = async function (msg, flow) {
     if (roomsSlot && roomsSlot.length > 0) {
         yeelights = utils.getLightsFromRoom(roomsSlot.map(x => x.value.value))
     } else {
-        yeelights = utils.getAllLights()
+        yeelights = utils.getAllLights(msg.siteId)
     }
 
     if (yeelights.length === 1) {

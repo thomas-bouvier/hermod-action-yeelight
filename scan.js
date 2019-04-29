@@ -30,8 +30,9 @@ async function scan() {
 
         const id = `lamp_${ counter }_id=${ yeelight.id }`
         const room = `lamp_${ counter }_room=`
+        const site = `lamp_${ counter }_site_id=`
         
-        fs.appendFileSync('config.ini', `\n${ id }\n${ room }`)
+        fs.appendFileSync('config.ini', `\n${ id }\n${ room }\n${ site }`)
 
         yeelight.set_power('on')
         await sleep(5000)

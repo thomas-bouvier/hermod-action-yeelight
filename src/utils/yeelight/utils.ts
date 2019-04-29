@@ -2,8 +2,26 @@
 import { Yeelight } from 'yeelight-node-binding'
 import { configFactory, yeeFactory } from '../../factories'
 
-function getAllLights(): Yeelight[] {
-    return yeeFactory.getAll()
+function getAllLights(siteId: string): Yeelight[] {
+    const config = configFactory.get()
+    const yeelights = yeeFactory.getAll()
+
+    const ret: Yeelight[] = []
+
+    for (let yeelight of yeelights) {
+        for (let i = 1;; i++) {
+            const key = `lamp${ i }Id`
+            if (config[key]) {
+                if (config[key] === yeelight.id && siteId === config[`lamp${ i }SiteId`]) {
+                    ret.push(yeelight)
+                }
+            } else {
+                break
+            }
+        }
+    }
+
+    return (ret.length === 0) ? yeelights : ret
 }
 
 function getLightsFromRoom(rooms: string[]): Yeelight[] {
