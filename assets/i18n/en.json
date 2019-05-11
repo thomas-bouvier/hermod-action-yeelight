@@ -4,8 +4,10 @@
         "config": "Sorry, there was an error with your config file.",
         "localisation": "Sorry, there was an error with your language settings.",
         "intentNotRecognized": "Sorry, I did not understand your request.",
-        "unknownColor": "Sorry, I don't known this color.",
         "unspecific": "Oops, something went wrong."
+    },
+    "dialog": {
+        "unknownColor": "Sorry, I don't know this color."
     },
     "yeelight": {
         "dialog": {

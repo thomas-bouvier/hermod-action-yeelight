@@ -25,7 +25,8 @@ export const setColorHandler: Handler = async function (msg, flow) {
     const color: string = colorSlot.value.value
 
     if (!COLORS[color]) {
-        throw new Error('unknownColor')
+        flow.end()
+        return i18n('dialog.unknownColor')
     }
 
     const roomsSlot: NluSlot<slotType.custom>[] | null = message.getSlotsByName(msg, 'house_room', {
