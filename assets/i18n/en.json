@@ -1,8 +1,8 @@
 {
     "error": {
-        "mqtt": "Sorry, there was a communication error with the Snips platform",
+        "mqtt": "Sorry, there was a communication error with the Snips platform.",
         "config": "Sorry, there was an error with your config file.",
-        "locale": "Sorry, there was an error with your language settings.",
+        "localisation": "Sorry, there was an error with your language settings.",
         "intentNotRecognized": "Sorry, I did not understand your request.",
         "unknownColor": "Sorry, I don't known this color.",
         "unspecific": "Oops, something went wrong."
