@@ -2,9 +2,11 @@
 import { Yeelight } from 'yeelight-node-binding'
 import { configFactory, yeeFactory } from '../../factories'
 
-function getAllLights(siteId: string): Yeelight[] {
+function getAllLights(siteId: string, returnAll: boolean = false): Yeelight[] {
     const config = configFactory.get()
     const yeelights = yeeFactory.getAll()
+
+    if (returnAll) return yeelights
 
     const ret: Yeelight[] = []
 

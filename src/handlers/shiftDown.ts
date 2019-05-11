@@ -27,11 +27,15 @@ export const shiftDownHandler: Handler = async function (msg, flow) {
     const roomsSlot: NluSlot<slotType.custom>[] | null = message.getSlotsByName(msg, 'house_room', {
         threshold: 0.5
     })
+    const allSlot: NluSlot<slotType.custom> | null = message.getSlotsByName(msg, 'all', {
+        threshold: 0.25,
+        onlyMostConfident: true
+    })
 
     if (roomsSlot) {
         yeelights = utils.getLightsFromRoom(roomsSlot.map(x => x.value.value))
     } else {
-        yeelights = utils.getAllLights(msg.siteId)
+        yeelights = utils.getAllLights(msg.siteId, allSlot !== null)
     }
 
     if (yeelights.length === 1) {
