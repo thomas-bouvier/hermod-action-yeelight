@@ -20,17 +20,17 @@
         },
         "setBrightness": {
             "single": {
-                "updated": "J'ai réglé la luminosité à {{ percentage }} pourcent.",
-                "increased": "J'ai augmenté la luminosité à {{ percentage }} pourcent.",
-                "decreased": "J'ai diminué la luminosité à {{ percentage }} pourcent."
+                "updated": "J'ai réglé la luminosité à {{ percentage }} %.",
+                "increased": "J'ai augmenté la luminosité à {{ percentage }} %.",
+                "decreased": "J'ai diminué la luminosité à {{ percentage }} %."
             },
             "all": {
-                "updated": "J'ai réglé la luminosité de toutes les lumières à {{ percentage }} pourcent."
+                "updated": "J'ai réglé la luminosité de toutes les lumières à {{ percentage }} %."
             }
         },
         "shiftDown": {
             "single": {
-                "decreased": "J'ai diminué la luminosité de {{ percentage }} pourcent.",
+                "decreased": "J'ai diminué la luminosité de {{ percentage }} %.",
                 "minimum": "La luminosité est déjà à son niveau le plus bas."
             },
             "all": {
@@ -39,7 +39,7 @@
         },
         "shiftUp": {
             "single": {
-                "increased": "J'ai augmenté la luminosité de {{ percentage }} pourcent.",
+                "increased": "J'ai augmenté la luminosité de {{ percentage }} %.",
                 "maximum": "La luminosté est déjà à son niveau le plus haut."
             },
             "all": {

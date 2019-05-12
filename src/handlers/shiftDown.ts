@@ -10,7 +10,7 @@ export const shiftDownHandler: Handler = async function (msg, flow) {
     const i18n = i18nFactory.get()
     let yeelights: Yeelight[]
 
-    const percentageSlot: NluSlot<slotType.percentage> | null = message.getSlotsByName(msg, 'percent', {
+    const percentageSlot: NluSlot<slotType.number> | null = message.getSlotsByName(msg, 'percent', {
         onlyMostConfident: true,
         threshold: 0.5
     })
