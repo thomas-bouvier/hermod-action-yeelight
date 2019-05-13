@@ -22,14 +22,21 @@ export const turnOffHandler: Handler = async function (msg, flow) {
     } else {
         yeelights = utils.getAllLights(msg.siteId, allSlot !== null)
     }
+    
 
     if (yeelights.length === 1) {
         const yeelight = yeelights[0]
 
-        yeelight.set_power('off')
-
         flow.end()
-        return i18n('yeelight.turnOff.single.updated')
+        if (!(await utils.getCurrentStatus(yeelight))) {
+            flow.end()
+            return i18n('yeelight.turnOff.single.already')
+        } else {
+            yeelight.set_power('off').then(_ => {
+                flow.end()
+                return i18n('yeelight.turnOff.single.updated')
+            })
+        }
     } else {
         for (let yeelight of yeelights) {
             yeelight.set_power('off')
