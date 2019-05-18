@@ -26,7 +26,7 @@ function getAllLights(siteId: string, returnAll: boolean = false): Yeelight[] {
     return (ret.length === 0) ? yeelights : ret
 }
 
-function getLightsFromRoom(rooms: string[]): Yeelight[] {
+function getLightsFromRooms(rooms: string[]): Yeelight[] {
     const config = configFactory.get()
     const yeelights = yeeFactory.getAll()
 
@@ -70,7 +70,7 @@ async function getCurrentBrightness(yeelight: Yeelight): Promise<number> {
 
 export const utils = {
     getAllLights,
-    getLightsFromRoom,
+    getLightsFromRooms,
     getCurrentStatus,
     getCurrentBrightness
 }

@@ -32,8 +32,8 @@ export const shiftDownHandler: Handler = async function (msg, flow) {
         onlyMostConfident: true
     })
 
-    if (roomsSlot) {
-        yeelights = utils.getLightsFromRoom(roomsSlot.map(x => x.value.value))
+    if (roomsSlot &&roomsSlot.length > 0) {
+        yeelights = utils.getLightsFromRooms(roomsSlot.map(x => x.value.value))
     } else {
         yeelights = utils.getAllLights(msg.siteId, allSlot !== null)
     }

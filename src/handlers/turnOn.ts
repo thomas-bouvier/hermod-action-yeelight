@@ -18,7 +18,7 @@ export const turnOnHandler: Handler = async function (msg, flow) {
     })
 
     if (roomsSlot && roomsSlot.length > 0) {
-        yeelights = utils.getLightsFromRoom(roomsSlot.map(x => x.value.value))
+        yeelights = utils.getLightsFromRooms(roomsSlot.map(x => x.value.value))
     } else {
         yeelights = utils.getAllLights(msg.siteId, allSlot !== null)
     }
@@ -30,9 +30,8 @@ export const turnOnHandler: Handler = async function (msg, flow) {
         if (await utils.getCurrentStatus(yeelight)) {
             return i18n('yeelight.turnOn.single.already')
         } else {
-            yeelight.set_power('on').then(_ => {
-                return i18n('yeelight.turnOn.single.updated')
-            })
+            yeelight.set_power('on')
+            return i18n('yeelight.turnOn.single.updated')
         }
     } else {
         for (let yeelight of yeelights) {
