@@ -26,15 +26,11 @@ export const turnOnHandler: Handler = async function (msg, flow) {
     if (yeelights.length === 1) {
         const yeelight = yeelights[0]
 
-        yeelight.set_power('on')
-
         flow.end()
         if (await utils.getCurrentStatus(yeelight)) {
-            flow.end()
             return i18n('yeelight.turnOn.single.already')
         } else {
             yeelight.set_power('on').then(_ => {
-                flow.end()
                 return i18n('yeelight.turnOn.single.updated')
             })
         }
