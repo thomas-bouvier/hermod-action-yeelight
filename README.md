@@ -1,8 +1,10 @@
 # snips-action-yeelight
 
-This app allows you to control your Xiaomi Yeelight lights by voice using Snips. It supports multiroom, color selection, and brightness control.
+This app allows you to control your Xiaomi Yeelight lights by voice using [Snips](https://snips.ai). It supports multiroom, color selection, and brightness control.
 
 More features can be added by customising your own assistant and action code.
+
+This app has been tested with Xiaomi Yeelight v2 (RGB and white). Tell me if you tried it with other devices 😉
 
 ## Installation
 
@@ -12,15 +14,15 @@ You must have Node.js installed on your device for this app to run.
 
 ### Installation with Sam
 
-Add the `Yeelight` app from the Snips App Store to your assistant. Then run this [Sam](https://docs.snips.ai/reference/sam) command to install it on your device:
+Add the `Lumières connectées - Yeelight` app from the [Snips App Store](https://console.snips.ai/store) to your assistant, and run this [Sam](https://docs.snips.ai/reference/sam) command to install it on your device:
 
 ```sh
-sam install assistant
+sam install
 ```
 
 ### Manual installation
 
-If you don't want (or can't) use [Sam](https://docs.snips.ai/reference/sam), you can manually clone this repository to the `/var/lib/snips/skills/` directory where the `snips-skill-server` is based on:
+If you don't want (or can't) use [Sam](https://docs.snips.ai/reference/sam), you can manually clone this repository to the `/var/lib/snips/skills` directory:
 
 ```sh
 cd /var/lib/snips/skills
@@ -29,11 +31,19 @@ cd snips-action-yeelight
 sudo -u _snips-skills sh setup.sh
 ```
 
+Don't forget to install your assistant containing the app to `/usr/share/snips/assistant`.
+
+Finally, restart the `snips-skill-server`:
+
+```sh
+sudo systemctl restart snips-skill-server
+```
+
 ## Configuration
 
-When installing the app, your connected Yeelight lights will light up one after the other. It is important to remember the order. For each of them, you will then be asked to enter an id, a room name and an id site. Only the id is mandatory, please press enter to keep the value already entered.
+When installing the app, your connected Yeelight lights will light up one after the other: please remember the order. For each of them, you will then be asked to provide an id, a room name (optional) and an id site (optional). Only the id is mandatory, please press enter to keep the value already set.
 
-If you decide to enter the name of a room for a light, it must exactly match one of the values in the slot named `house_room` in the assistant. Feel free to create new values to fit your needs. Assigning a room to a light allows you to ask queries like `Hey Snips, turn on the entrance lights`.
+If you want to enter the name of a room for a light, it must exactly match one of the values in the slot named `house_room` in the assistant. Feel free to create new values to fit your needs. Assigning a room to a light allows you to ask queries like `Hey Snips, turn on the entrance lights`.
 
 Assigning a site id to a light allows you to ask queries like `Hey Snips, turn on the lights` to affect lights in the same area than the Snips device. If you don't affect any site id to any lights, this query would affect all of your lights.
 
@@ -41,7 +51,7 @@ You can change this configuration by manually editing `config.ini`.
 
 ## Tests & Demo cases
 
-This app only supports french 🇫🇷 and english 🇬🇧.
+At the moment, this app only supports french 🇫🇷.
 
 ### `TurnOn`
 
@@ -159,49 +169,6 @@ Set a color in all lights
 
 > *Hey Snips, mets une ambiance rose dans tout l'appartement*
 
-## Development
+## Contributing
 
-```sh
-# Install the dependencies, builds the action and creates the config.ini file.
-sh setup.sh
-```
-
-### Run
-
-- Dev mode:
-
-```sh
-# Dev mode watches for file changes and restarts the action.
-npm run dev
-```
-
-- Prod mode:
-
-```sh
-# 1) Lint, transpile and test.
-npm start
-# 2) Run the action.
-node action-yeelight.js
-```
-
-### Debug
-
-In the `action-yeelight.js` file:
-
-```js
-// Uncomment this line to print everything
-// debug.enable(name + ':*')
-```
-
-### Test
-
-*Requires [mosquitto](https://mosquitto.org/download/) to be installed.*
-
-```sh
-npm run test
-```
-
-**In test mode, i18n output and http calls are mocked.**
-
-- **http**: see `tests/httpMocks/index.ts`
-- **i18n**: see `src/factories/i18nFactory.ts`
+Please see the [Contribution Guidelines](https://github.com/thomas-bouvier/snips-action-yeelight/blob/master/CONTRIBUTING.md).
