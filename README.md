@@ -1,14 +1,12 @@
 # snips-action-yeelight
 
-This action code is designed for Xiaomi Yeelight lights. It allows you to control lights in different rooms by voice using Snips. The app supports color selection, built-in scenes, and brightness control.
+This app allows you to control your Xiaomi Yeelight lights by voice using Snips. It supports multiroom, color selection, and brightness control.
 
-More functionality, for e.g. controlling each individual light or handling more bespoke colors, please follow the Developer section in order to customise your own bundle and action code.
+More features, for e.g. controlling each individual light or handling more bespoke colors, can be added by customising your own assistant and action code.
 
 ## Installation
 
-Before installing this app, make sure all your bulbs work. To be able to control your lights, don't forget to enable the LAN Control option in the Yeelight mobile app.
-
-**⚠️⚠️ Make sure you enabled the LAN Control option in the Yeelight mobile app for each of your bulbs.**
+**⚠️⚠️ Make sure you enabled the LAN Control option in the Yeelight mobile app for each of your lights before installing this app.**
 
 ### Installation with Sam
 
@@ -18,7 +16,7 @@ Run the following command to install your assistant and its action code:
 sam install assistant
 ```
 
-Then select the assistant which contains `Yeelight` bundle.
+Then select the the `Yeelight` assistant.
 
 ### Manual installation
 
@@ -32,6 +30,10 @@ sudo -u _snips-skills sh setup.sh
 ```
 
 Don't forget to edit the `config.ini` file.
+
+## Configuration
+
+## Tests & Demo cases
 
 ## Development
 

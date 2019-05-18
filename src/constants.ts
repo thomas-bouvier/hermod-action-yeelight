@@ -8,7 +8,7 @@ export const LANGUAGE_MAPPINGS = {
     english: 'en',
     french: 'fr'
 }
-export const DEFAULT_SHIFT_AMOUNT = 25
+export const DEFAULT_SHIFT_AMOUNT = 40
 export const COLORS = {
     ivory: {
         rgb: [255, 255, 240],
