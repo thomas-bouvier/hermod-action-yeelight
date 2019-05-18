@@ -4,6 +4,7 @@ import { message, translation } from '../utils'
 import { utils } from '../utils/yeelight'
 import { Yeelight } from 'yeelight-node-binding'
 import { i18nFactory } from '../factories'
+import { SLOT_CONFIDENCE_THRESHOLD } from '../constants'
 
 export const setBrightnessHandler: Handler = async function (msg, flow) {
     const i18n = i18nFactory.get()
@@ -11,7 +12,7 @@ export const setBrightnessHandler: Handler = async function (msg, flow) {
 
     const percentageSlot: NluSlot<slotType.number> | null = message.getSlotsByName(msg, 'percent', {
         onlyMostConfident: true,
-        threshold: 0.5
+        threshold: SLOT_CONFIDENCE_THRESHOLD
     })
 
     // We need this slot, so if the slot had a low confidence or was not mark as required,
@@ -24,7 +25,7 @@ export const setBrightnessHandler: Handler = async function (msg, flow) {
     const newBrightness: number = Math.abs(percentageSlot.value.value)
 
     const roomsSlot: NluSlot<slotType.custom>[] | null = message.getSlotsByName(msg, 'house_room', {
-        threshold: 0.5
+        threshold: SLOT_CONFIDENCE_THRESHOLD
     })
     const allSlot: NluSlot<slotType.custom> | null = message.getSlotsByName(msg, 'all', {
         threshold: 0.25,

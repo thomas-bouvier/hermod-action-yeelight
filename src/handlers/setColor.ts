@@ -2,7 +2,7 @@ import { Handler } from './index'
 import { NluSlot, slotType } from 'hermes-javascript'
 import { message, translation } from '../utils'
 import { utils } from '../utils/yeelight'
-import { COLORS } from '../constants'
+import { COLORS, SLOT_CONFIDENCE_THRESHOLD } from '../constants'
 import { Yeelight } from 'yeelight-node-binding'
 import { i18nFactory } from '../factories'
 
@@ -12,7 +12,7 @@ export const setColorHandler: Handler = async function (msg, flow) {
 
     const colorSlot: NluSlot<slotType.custom> | null = message.getSlotsByName(msg, 'color', {
         onlyMostConfident: true,
-        threshold: 0.5
+        threshold: SLOT_CONFIDENCE_THRESHOLD
     })
 
     // We need this slot, so if the slot had a low confidence or was not mark as required,
@@ -30,7 +30,7 @@ export const setColorHandler: Handler = async function (msg, flow) {
     }
 
     const roomsSlot: NluSlot<slotType.custom>[] | null = message.getSlotsByName(msg, 'house_room', {
-        threshold: 0.5
+        threshold: SLOT_CONFIDENCE_THRESHOLD
     })
     const allSlot: NluSlot<slotType.custom> | null = message.getSlotsByName(msg, 'all', {
         threshold: 0.25,

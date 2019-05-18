@@ -8,7 +8,8 @@ export const LANGUAGE_MAPPINGS = {
     english: 'en',
     french: 'fr'
 }
-export const DEFAULT_SHIFT_AMOUNT = 40
+export const SLOT_CONFIDENCE_THRESHOLD = 0.4
+export const DEFAULT_SHIFT_AMOUNT = 30
 export const COLORS = {
     ivory: {
         rgb: [255, 255, 240],

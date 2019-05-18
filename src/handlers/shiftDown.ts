@@ -3,7 +3,7 @@ import { NluSlot, slotType } from 'hermes-javascript'
 import { message, translation } from '../utils'
 import { utils } from '../utils/yeelight'
 import { Yeelight } from 'yeelight-node-binding'
-import { DEFAULT_SHIFT_AMOUNT } from '../constants'
+import { DEFAULT_SHIFT_AMOUNT, SLOT_CONFIDENCE_THRESHOLD } from '../constants'
 import { i18nFactory } from '../factories'
 
 export const shiftDownHandler: Handler = async function (msg, flow) {
@@ -12,7 +12,7 @@ export const shiftDownHandler: Handler = async function (msg, flow) {
 
     const percentageSlot: NluSlot<slotType.number> | null = message.getSlotsByName(msg, 'percent', {
         onlyMostConfident: true,
-        threshold: 0.5
+        threshold: SLOT_CONFIDENCE_THRESHOLD
     })
 
     let shiftAmount: number
@@ -25,7 +25,7 @@ export const shiftDownHandler: Handler = async function (msg, flow) {
     }
 
     const roomsSlot: NluSlot<slotType.custom>[] | null = message.getSlotsByName(msg, 'house_room', {
-        threshold: 0.5
+        threshold: SLOT_CONFIDENCE_THRESHOLD
     })
     const allSlot: NluSlot<slotType.custom> | null = message.getSlotsByName(msg, 'all', {
         threshold: 0.25,
