@@ -61,10 +61,10 @@ export const translation = {
         })
     },
 
-    shiftUpToSpeech(currentBrightness: number, shiftAmount: number): string {
+    shiftUpToSpeech(shiftAmount: number, currentBrightness: number = 0): string {
         const i18n = i18nFactory.get()
 
-        if (currentBrightness === 100) {
+        if (currentBrightness && currentBrightness === 100) {
             return i18n('yeelight.shiftUp.single.maximum')
         }
 

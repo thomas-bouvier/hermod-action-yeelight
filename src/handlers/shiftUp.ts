@@ -41,26 +41,16 @@ export const shiftUpHandler: Handler = async function (msg, flow) {
     if (yeelights.length === 1) {
         const yeelight = yeelights[0]
 
+        // Turn on the light if currently off
         if (!(await utils.getCurrentStatus(yeelight))) {
+            yeelight.set_power('on')
+
+            // Setting the brightness
+            yeelight.set_bright(shiftAmount)
+
             flow.end()
-            return i18n('yeelight.dialog.single.off')
-        }
-
-        // Getting the current brightness
-        const currentBrightness = await utils.getCurrentBrightness(yeelight)
-
-        let newBrightness = currentBrightness + shiftAmount
-        if (newBrightness > 100) {
-            newBrightness = 100
-        }
-
-        // Setting the brightness
-        yeelight.set_bright(newBrightness)
-
-        flow.end()
-        return translation.shiftUpToSpeech(currentBrightness, shiftAmount)
-    } else {
-        for (let yeelight of yeelights)   {
+            return translation.shiftUpToSpeech(shiftAmount)
+        } else {
             // Getting the current brightness
             const currentBrightness = await utils.getCurrentBrightness(yeelight)
 
@@ -71,6 +61,30 @@ export const shiftUpHandler: Handler = async function (msg, flow) {
 
             // Setting the brightness
             yeelight.set_bright(newBrightness)
+
+            flow.end()
+            return translation.shiftUpToSpeech(shiftAmount, currentBrightness)
+        }
+    } else {
+        for (let yeelight of yeelights)   {
+            // Turn on the light if currently off
+            if (!(await utils.getCurrentStatus(yeelight))) {
+                yeelight.set_power('on')
+
+                // Setting the brightness
+                yeelight.set_bright(shiftAmount)
+            } else {
+                // Getting the current brightness
+                const currentBrightness = await utils.getCurrentBrightness(yeelight)
+
+                let newBrightness = currentBrightness + shiftAmount
+                if (newBrightness > 100) {
+                    newBrightness = 100
+                }
+
+                // Setting the brightness
+                yeelight.set_bright(newBrightness)
+            }
         }
 
         flow.end()
