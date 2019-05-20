@@ -14,10 +14,10 @@ You must have Node.js installed on your device for this app to run.
 
 ### Installation with Sam
 
-Add the `Lumières connectées - Yeelight` app from the [Snips App Store](https://console.snips.ai/store) to your assistant, and run this [Sam](https://docs.snips.ai/reference/sam) command to install it on your device:
+Add the `Smart lights - Yeelight` (or `Lumières connectées - Yeelight`) app from the [Snips App Store](https://console.snips.ai/store) to your assistant, and run this [Sam](https://docs.snips.ai/reference/sam) command to install it on your device:
 
 ```sh
-sam install
+sam install assistant
 ```
 
 ### Manual installation
@@ -51,7 +51,7 @@ You can change this configuration by manually editing `config.ini`.
 
 ## Tests & Demo cases
 
-At the moment, this app only supports french 🇫🇷.
+At the moment, this app only supports french 🇫🇷 and english 🇬🇧.
 
 ### `TurnOn`
 
