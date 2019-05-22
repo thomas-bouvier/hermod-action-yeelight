@@ -12,7 +12,7 @@ You must have Node.js installed on your device for this app to run.
 
 **⚠️ Make sure you enabled the LAN Control option in the Yeelight mobile app for each of your lights before installing this app.**
 
-### Installation with Sam
+### Installation using Sam
 
 Add the `Lumières connectées - Yeelight` app from the [Snips App Store](https://console.snips.ai/store) to your assistant, and run this [Sam](https://docs.snips.ai/reference/sam) command to install it on your device:
 
@@ -41,13 +41,21 @@ sudo systemctl restart snips-skill-server
 
 ## Configuration
 
-When installing the app, your connected Yeelight lights will light up one after the other: please remember the order. For each of them, you will then be asked to provide an id, a room name (optional) and an id site (optional). Only the id is mandatory, please press enter to keep the value already set.
+When installing the app, your connected Yeelight lights will light up one after the other: please remember the order. For each of them, you will then be asked to provide an `id`, a `room` (optional) and a `site_id` (optional). Only the `id` is mandatory.
 
-If you want to enter the name of a room for a light, it must exactly match one of the values in the slot named `house_room` in the assistant. Feel free to create new values to fit your needs. Assigning a room to a light allows you to ask queries like `Hey Snips, turn on the entrance lights`.
+If you provide a `room` for a light, it must exactly match one of the values in the slot named `house_room` in the assistant. Feel free to create new values to fit your needs. Assigning a room to a light allows you to ask queries like `Hey Snips, turn on the bedroom lights` (where `bedroom` is a value of `house_room`).
 
-Assigning a site id to a light allows you to ask queries like `Hey Snips, turn on the lights` to affect lights in the same area than the Snips device. If you don't affect any site id to any lights, this query would affect all of your lights.
+Assigning a `site_id` to a light allows you to ask queries like `Hey Snips, turn on the lights`, which would  affect lights in the same area than the Snips device only. If you don't affect any `site_id` to any lights, this query would affect all of your lights.
+
+### Configuration using Sam
+
+Sam will ask you to input the above parameters during the installation process. Enter your locale (`english` or `french`). Press enter to keep the value already set as an `id`, and fill in the `room` and the `site_id` at your convenience.
 
 You can change this configuration by manually editing `config.ini`.
+
+### Manual configuration
+
+Edit `config.ini` to setup the app.
 
 ## Tests & Demo cases
 
