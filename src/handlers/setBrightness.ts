@@ -10,10 +10,12 @@ export const setBrightnessHandler: Handler = async function (msg, flow) {
     const i18n = i18nFactory.get()
     let yeelights: Yeelight[]
 
-    const percentageSlot: NluSlot<slotType.number> | null = message.getSlotsByName(msg, 'percent', {
+    const percentageSlot: NluSlot<slotType.number> | null = message.getSlotsByName(msg, 'brightness', {
         onlyMostConfident: true,
         threshold: SLOT_CONFIDENCE_THRESHOLD
     })
+
+    console.log('bla ', percentageSlot)
 
     // We need this slot, so if the slot had a low confidence or was not mark as required,
     // we throw an error.
@@ -24,7 +26,7 @@ export const setBrightnessHandler: Handler = async function (msg, flow) {
     // Getting the integer value
     const newBrightness: number = Math.abs(percentageSlot.value.value)
 
-    const roomsSlot: NluSlot<slotType.custom>[] | null = message.getSlotsByName(msg, 'house_room', {
+    const roomsSlot: NluSlot<slotType.custom>[] | null = message.getSlotsByName(msg, 'room', {
         threshold: SLOT_CONFIDENCE_THRESHOLD
     })
     const allSlot: NluSlot<slotType.custom> | null = message.getSlotsByName(msg, 'all', {

@@ -29,7 +29,7 @@ export const setColorHandler: Handler = async function (msg, flow) {
         return i18n('dialog.unknownColor')
     }
 
-    const roomsSlot: NluSlot<slotType.custom>[] | null = message.getSlotsByName(msg, 'house_room', {
+    const roomsSlot: NluSlot<slotType.custom>[] | null = message.getSlotsByName(msg, 'room', {
         threshold: SLOT_CONFIDENCE_THRESHOLD
     })
     const allSlot: NluSlot<slotType.custom> | null = message.getSlotsByName(msg, 'all', {
