@@ -1,6 +1,6 @@
 {
   "name": "snips-action-yeelight",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Snips action code to control your Xiaomi Yeelights from anywhere in your house.",
   "main": "dist/index.js",
   "scripts": {
