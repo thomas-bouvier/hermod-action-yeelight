@@ -1,13 +1,11 @@
-import { Handler } from './index'
-import { NluSlot, slotType } from 'hermes-javascript'
-import { message, translation } from '../utils'
+import { NluSlot, slotType } from 'hermes-javascript/types'
+import { translation } from '../utils'
 import { utils } from '../utils/yeelight'
 import { Yeelight } from 'yeelight-node-binding'
+import { i18n, message, Handler } from 'snips-toolkit'
 import { DEFAULT_SHIFT_AMOUNT, SLOT_CONFIDENCE_THRESHOLD } from '../constants'
-import { i18nFactory } from '../factories'
 
 export const shiftDownHandler: Handler = async function (msg, flow) {
-    const i18n = i18nFactory.get()
     let yeelights: Yeelight[]
 
     const percentageSlot: NluSlot<slotType.number> | null = message.getSlotsByName(msg, 'brightness', {
@@ -43,7 +41,7 @@ export const shiftDownHandler: Handler = async function (msg, flow) {
 
         if (!(await utils.getCurrentStatus(yeelight))) {
             flow.end()
-            return i18n('yeelight.dialog.single.off')
+            return i18n.translate('yeelight.dialog.single.off')
         }
 
         // Getting the current brightness
@@ -74,6 +72,6 @@ export const shiftDownHandler: Handler = async function (msg, flow) {
         }
 
         flow.end()
-        return i18n('yeelight.shiftDown.all.decreased')
+        return i18n.translate('yeelight.shiftDown.all.decreased')
     }
 }

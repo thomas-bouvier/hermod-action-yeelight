@@ -1,13 +1,10 @@
-import { Handler } from './index'
-import { i18nFactory } from '../factories'
-import { NluSlot, slotType } from 'hermes-javascript'
-import { message } from '../utils'
+import { NluSlot, slotType } from 'hermes-javascript/types'
 import { utils } from '../utils/yeelight'
 import { Yeelight } from 'yeelight-node-binding'
+import { i18n, message, Handler } from 'snips-toolkit'
 import { SLOT_CONFIDENCE_THRESHOLD } from '../constants'
 
 export const turnOffHandler: Handler = async function (msg, flow) {
-    const i18n = i18nFactory.get()
     let yeelights: Yeelight[]
 
     const roomsSlot: NluSlot<slotType.custom>[] | null = message.getSlotsByName(msg, 'room', {
@@ -29,10 +26,10 @@ export const turnOffHandler: Handler = async function (msg, flow) {
 
         flow.end()
         if (!(await utils.getCurrentStatus(yeelight))) {
-            return i18n('yeelight.turnOff.single.already')
+            return i18n.translate('yeelight.turnOff.single.already')
         } else {
             yeelight.set_power('off')
-            return i18n('yeelight.turnOff.single.updated')
+            return i18n.translate('yeelight.turnOff.single.updated')
         }
     } else {
         for (let yeelight of yeelights) {
@@ -40,6 +37,6 @@ export const turnOffHandler: Handler = async function (msg, flow) {
         }
     
         flow.end()
-        return i18n('yeelight.turnOff.all.updated')
+        return i18n.translate('yeelight.turnOff.all.updated')
     }
 }

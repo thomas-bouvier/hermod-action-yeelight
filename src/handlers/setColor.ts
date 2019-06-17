@@ -1,13 +1,11 @@
-import { Handler } from './index'
-import { NluSlot, slotType } from 'hermes-javascript'
-import { message, translation } from '../utils'
+import { NluSlot, slotType } from 'hermes-javascript/types'
+import { translation } from '../utils'
 import { utils } from '../utils/yeelight'
-import { COLORS, SLOT_CONFIDENCE_THRESHOLD } from '../constants'
 import { Yeelight } from 'yeelight-node-binding'
-import { i18nFactory } from '../factories'
+import { i18n, message, Handler } from 'snips-toolkit'
+import { COLORS, SLOT_CONFIDENCE_THRESHOLD } from '../constants'
 
 export const setColorHandler: Handler = async function (msg, flow) {
-    const i18n = i18nFactory.get()
     let yeelights: Yeelight[]
 
     const colorSlot: NluSlot<slotType.custom> | null = message.getSlotsByName(msg, 'color', {
@@ -26,7 +24,7 @@ export const setColorHandler: Handler = async function (msg, flow) {
 
     if (!COLORS[color]) {
         flow.end()
-        return i18n('dialog.unknownColor')
+        return i18n.translate('dialog.unknownColor')
     }
 
     const roomsSlot: NluSlot<slotType.custom>[] | null = message.getSlotsByName(msg, 'room', {
@@ -67,8 +65,8 @@ export const setColorHandler: Handler = async function (msg, flow) {
         }
 
         flow.end()
-        return i18n('yeelight.setColor.all.updated', {
-            color: i18n('colors.' + color)
+        return i18n.translate('yeelight.setColor.all.updated', {
+            color: i18n.translate('colors.' + color)
         })
     }
 }

@@ -1,13 +1,11 @@
-import { Handler } from './index'
-import { NluSlot, slotType } from 'hermes-javascript'
-import { message, translation } from '../utils'
+import { NluSlot, slotType } from 'hermes-javascript/types'
+import { translation } from '../utils'
 import { utils } from '../utils/yeelight'
 import { Yeelight } from 'yeelight-node-binding'
-import { i18nFactory } from '../factories'
+import { i18n, message, Handler } from 'snips-toolkit'
 import { SLOT_CONFIDENCE_THRESHOLD } from '../constants'
 
 export const setBrightnessHandler: Handler = async function (msg, flow) {
-    const i18n = i18nFactory.get()
     let yeelights: Yeelight[]
 
     const percentageSlot: NluSlot<slotType.number> | null = message.getSlotsByName(msg, 'brightness', {
@@ -69,7 +67,7 @@ export const setBrightnessHandler: Handler = async function (msg, flow) {
         }
 
         flow.end()
-        return i18n('yeelight.setBrightness.all.updated', {
+        return i18n.translate('yeelight.setBrightness.all.updated', {
             percentage: newBrightness
         })
     }

@@ -1,4 +1,4 @@
-import { logger } from '../utils'
+import { logger } from 'snips-toolkit'
 import { Client, Yeelight } from 'yeelight-node-binding'
 
 const yeelights: Yeelight[] = []

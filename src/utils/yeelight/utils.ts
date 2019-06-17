@@ -1,9 +1,9 @@
 
 import { Yeelight } from 'yeelight-node-binding'
-import { configFactory, yeeFactory } from '../../factories'
+import { config } from 'snips-toolkit'
+import { yeeFactory } from '../../factories'
 
 function getAllLights(siteId: string, returnAll: boolean = false): Yeelight[] {
-    const config = configFactory.get()
     const yeelights = yeeFactory.getAll()
 
     if (returnAll) return yeelights
@@ -27,7 +27,6 @@ function getAllLights(siteId: string, returnAll: boolean = false): Yeelight[] {
 }
 
 function getLightsFromRooms(rooms: string[]): Yeelight[] {
-    const config = configFactory.get()
     const yeelights = yeeFactory.getAll()
 
     const ret: Yeelight[] = []
