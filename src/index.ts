@@ -1,6 +1,7 @@
 import { Hermes, Done } from 'hermes-javascript'
 import { config, i18n, logger } from 'snips-toolkit'
 import handlers from './handlers'
+import { yeeFactory } from './factories'
 
 // Enables deep printing of objects.
 process.env.DEBUG_DEPTH = undefined
@@ -18,6 +19,7 @@ export default async function ({
         // Replace 'error' with '*' to log everything
         logger.enable('error')
 
+        yeeFactory.init()
         config.init()
         await i18n.init(config.get().locale)
 

@@ -5,20 +5,17 @@ import { yeeFactory } from '../../factories'
 
 function getAllLights(siteId: string, returnAll: boolean = false): Yeelight[] {
     const yeelights = yeeFactory.getAll()
+    const ret: Yeelight[] = []
 
     if (returnAll) return yeelights
 
-    const ret: Yeelight[] = []
+    for (let i = 1; i <= yeelights.length; i++) {
+        const yeelight = yeelights[i - 1]
+        const key = `lamp${ i }Id`
 
-    for (let yeelight of yeelights) {
-        for (let i = 1;; i++) {
-            const key = `lamp${ i }Id`
-            if (config[key]) {
-                if (config[key] === yeelight.id && siteId === config[`lamp${ i }SiteId`]) {
-                    ret.push(yeelight)
-                }
-            } else {
-                break
+        if (config.get()[key]) {
+            if (config.get()[key] === yeelight.id && siteId === config.get()[`lamp${ i }SiteId`]) {
+                ret.push(yeelight)
             }
         }
     }
@@ -28,18 +25,15 @@ function getAllLights(siteId: string, returnAll: boolean = false): Yeelight[] {
 
 function getLightsFromRooms(rooms: string[]): Yeelight[] {
     const yeelights = yeeFactory.getAll()
-
     const ret: Yeelight[] = []
 
-    for (let yeelight of yeelights) {
-        for (let i = 1;; i++) {
-            const key = `lamp${ i }Id`
-            if (config[key]) {
-                if (config[key] === yeelight.id && rooms.includes(config[`lamp${ i }Room`])) {
-                    ret.push(yeelight)
-                }
-            } else {
-                break
+    for (let i = 1; i <= yeelights.length; i++) {
+        const yeelight = yeelights[i - 1]
+        const key = `lamp${ i }Id`
+
+        if (config.get()[key]) {
+            if (config.get()[key] === yeelight.id && rooms.includes(config.get()[`lamp${ i }Room`])) {
+                ret.push(yeelight)
             }
         }
     }

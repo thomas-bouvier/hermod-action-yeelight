@@ -13,8 +13,6 @@ export const setBrightnessHandler: Handler = async function (msg, flow) {
         threshold: SLOT_CONFIDENCE_THRESHOLD
     })
 
-    console.log('bla ', percentageSlot)
-
     // We need this slot, so if the slot had a low confidence or was not mark as required,
     // we throw an error.
     if (!percentageSlot) {
