@@ -5,7 +5,7 @@ export const ASR_UTTERANCE_CONFIDENCE_THRESHOLD = 0.4
 export const DEFAULT_SHIFT_AMOUNT = 35
 export const COLORS = {
     white: {
-        rgb: [255, 255, 240],
+        rgb: [255, 255, 255],
         sat: 0,
         hue: 0
     },
