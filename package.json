@@ -19,17 +19,17 @@
     "url": "https://github.com/thomas-bouvier/snips-action-yeelight"
   },
   "devDependencies": {
-    "@types/jest": "^24.0.13",
-    "@typescript-eslint/eslint-plugin": "^1.9.0",
-    "@typescript-eslint/parser": "^1.9.0",
-    "eslint": "^5.16.0",
-    "eslint-plugin-jest": "^22.5.1",
-    "typescript": "^3.4.5"
+    "@types/jest": "^24.0.15",
+    "@typescript-eslint/eslint-plugin": "^1.11.0",
+    "@typescript-eslint/parser": "^1.11.0",
+    "eslint": "^6.0.1",
+    "eslint-plugin-jest": "^22.7.1",
+    "hermes-javascript": "^0.3.12",
+    "typescript": "^3.5.2"
   },
   "dependencies": {
-    "hermes-javascript": "^0.3.11",
-    "yeelight-node-binding": "^1.1.1",
-    "snips-toolkit": "^0.1.3"
+    "snips-toolkit": "^1.0.8",
+    "yeelight-node-binding": "^1.1.1"
   },
   "sandbox": [
     "dgram",
