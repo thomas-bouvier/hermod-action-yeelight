@@ -25,30 +25,32 @@ export default async function ({
 
         const dialog = hermes.dialog()
 
+        const intentPrefix = config.get().intentPrefix
+
         // Subscribe to the app intents
         dialog.flows([
             {
-                intent: 'thomas-bouvier:TurnOn',
+                intent: `${ intentPrefix }:TurnOn`,
                 action: handlers.turnOn
             },
             {
-                intent: 'thomas-bouvier:TurnOff',
+                intent: `${ intentPrefix }:TurnOff`,
                 action: handlers.turnOff
             },
             {
-                intent: 'thomas-bouvier:SetBrightness',
+                intent: `${ intentPrefix }:SetBrightness`,
                 action: handlers.setBrightness
             },
             {
-                intent: 'thomas-bouvier:ShiftDown',
+                intent: `${ intentPrefix }:ShiftDown`,
                 action: handlers.shiftDown
             },
             {
-                intent: 'thomas-bouvier:ShiftUp',
+                intent: `${ intentPrefix }:ShiftUp`,
                 action: handlers.shiftUp
             },
             {
-                intent: 'thomas-bouvier:SetColor',
+                intent: `${ intentPrefix }:SetColor`,
                 action: handlers.setColor
             }
         ])

@@ -47,9 +47,11 @@ If you provide a `room` for a light, it must exactly match one of the values in 
 
 Assigning a `site_id` to a light allows you to ask queries like `Hey Snips, turn on the lights`, which would  affect lights in the same area than the Snips device only. If you don't affect any `site_id` to any lights, this query would affect all of your lights.
 
+If you forked the app from the Snips App Store, you may need to update the `intent_prefix` attribute with your Snips Console account username. It will be used to catch the correct 'intent detected' topic.
+
 ### Configuration using Sam
 
-Sam will ask you to input the above parameters during the installation process. Enter your locale (`english` or `french`). Press enter to keep the value already set as an `id`, and fill in the `room` and the `site_id` at your convenience.
+Sam will ask you to input the above parameters during the installation process. Enter your locale (`en` or `fr`). Press enter to keep the value already set as an `id`, and fill in the `room` and the `site_id` at your convenience.
 
 You can change this configuration by manually editing `config.ini`.
 

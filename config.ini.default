@@ -2,3 +2,4 @@
 locale=en
 
 [secret]
+intent_prefix=thomas-bouvier
