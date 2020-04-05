@@ -1,6 +1,6 @@
 {
     "error": {
-        "mqtt": "Sorry, there was a communication error with the Snips platform.",
+        "mqtt": "Sorry, there was a communication error with the Hermes protocol.",
         "config": "Sorry, there was an error with your config file.",
         "localisation": "Sorry, there was an error with your language settings.",
         "intentNotRecognized": "Sorry, I did not understand your request.",

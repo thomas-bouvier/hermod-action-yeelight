@@ -1,6 +1,6 @@
 {
     "error": {
-        "mqtt": "Désolé, une erreur s'est produite lors de la communication avec la plateforme Snips.",
+        "mqtt": "Désolé, une erreur s'est produite lors de la communication via le protocole Hermes.",
         "config": "Désolé, une erreur s'est produite avec votre fichier de configuration.",
         "localisation": "Désolé, une erreur s'est produite avec vos paramètres de localisation.",
         "intentNotRecognized": "Désolé, je n'ai pas compris votre requête.",

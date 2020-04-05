@@ -1,7 +1,7 @@
 {
-  "name": "snips-action-yeelight",
+  "name": "hermod-action-yeelight",
   "version": "1.1.1",
-  "description": "Snips action code to control your Xiaomi Yeelights from anywhere in your house.",
+  "description": "Hermod action: Yeelight",
   "main": "dist/index.js",
   "scripts": {
     "start": "npm run lint && npm run build && npm run test",
