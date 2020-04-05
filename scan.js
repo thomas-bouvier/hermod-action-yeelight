@@ -1,6 +1,6 @@
 /* eslint no-console: off */
 
-const { Client } = require('yeelight-node-binding')
+const { Client } = require('yeelight-node')
 const fs = require('fs')
 
 const client = new Client()

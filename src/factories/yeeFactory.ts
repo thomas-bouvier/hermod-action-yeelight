@@ -1,5 +1,5 @@
 import { logger } from 'hermod-toolkit'
-import { Client, Yeelight } from 'yeelight-node-binding'
+import { Client, Yeelight } from 'yeelight-node'
 
 const yeelights: Yeelight[] = []
 

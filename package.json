@@ -19,18 +19,20 @@
     "url": "https://github.com/thomas-bouvier/hermod-action-yeelight"
   },
   "devDependencies": {
-    "@types/jest": "^24.0.15",
-    "@typescript-eslint/eslint-plugin": "^1.11.0",
-    "@typescript-eslint/parser": "^1.11.0",
-    "eslint": "^6.0.1",
-    "eslint-plugin-jest": "^22.7.1",
+    "@babel/core": "^7.9.0",
+    "@types/jest": "^25.2.1",
+    "@typescript-eslint/eslint-plugin": "^2.26.0",
+    "@typescript-eslint/parser": "^2.26.0",
+    "eslint": "^6.8.0",
+    "eslint-plugin-jest": "^23.8.2",
     "hermes-protocol": "^0.4.2",
-    "typescript": "^3.5.2",
-    "hermod-toolkit": "^1.2.4"
+    "hermod-toolkit": "^1.2.4",
+    "ts-jest": "^25.3.1",
+    "typescript": "^3.8.3"
   },
   "dependencies": {
     "hermod-toolkit-runner": "^1.1.2",
-    "yeelight-node-binding": "^1.1.1"
+    "yeelight-node": "^1.1.2"
   },
   "sandbox": [
     "dgram",

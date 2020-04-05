@@ -1,5 +1,5 @@
 
-import { Yeelight } from 'yeelight-node-binding'
+import { Yeelight } from 'yeelight-node'
 import { config } from 'hermod-toolkit'
 import { yeeFactory } from '../../factories'
 

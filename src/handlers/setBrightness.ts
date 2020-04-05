@@ -1,7 +1,7 @@
 import { NluSlot, slotType } from 'hermes-protocol/types'
 import { translation } from '../utils'
 import { utils } from '../utils/yeelight'
-import { Yeelight } from 'yeelight-node-binding'
+import { Yeelight } from 'yeelight-node'
 import { i18n, message, Handler } from 'hermod-toolkit'
 import { SLOT_CONFIDENCE_THRESHOLD } from '../constants'
 
