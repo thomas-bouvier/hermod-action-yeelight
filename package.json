@@ -5,18 +5,18 @@
   "main": "dist/index.js",
   "scripts": {
     "start": "npm run lint && npm run build && npm run test",
-    "build": "snips-toolkit build",
-    "dev": "snips-toolkit dev",
-    "test": "snips-toolkit test '^.*\\.spec\\.[jt]s$'",
-    "test:sandbox": "snips-toolkit test -s '^.*\\.spec\\.[jt]s$'",
-    "launch": "snips-toolkit run",
+    "build": "hermod-toolkit build",
+    "dev": "hermod-toolkit dev",
+    "test": "hermod-toolkit test",
+    "test:sandbox": "hermod-toolkit test -s",
+    "launch": "hermod-toolkit run",
     "lint": "eslint \"**/*.[jt]s\""
   },
   "author": "Thomas Bouvier &lt;contact@thomas-bouvier.io&gt;",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/thomas-bouvier/snips-action-yeelight"
+    "url": "https://github.com/thomas-bouvier/hermod-action-yeelight"
   },
   "devDependencies": {
     "@types/jest": "^24.0.15",
@@ -24,11 +24,12 @@
     "@typescript-eslint/parser": "^1.11.0",
     "eslint": "^6.0.1",
     "eslint-plugin-jest": "^22.7.1",
-    "hermes-javascript": "^0.3.12",
-    "typescript": "^3.5.2"
+    "hermes-protocol": "^0.4.2",
+    "typescript": "^3.5.2",
+    "hermod-toolkit": "^1.2.4"
   },
   "dependencies": {
-    "snips-toolkit": "^1.0.8",
+    "hermod-toolkit-runner": "^1.1.2",
     "yeelight-node-binding": "^1.1.1"
   },
   "sandbox": [

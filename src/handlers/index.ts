@@ -1,4 +1,4 @@
-import { handler, ConfidenceThresholds } from 'snips-toolkit'
+import { handler, ConfidenceThresholds } from 'hermod-toolkit'
 import { turnOnHandler } from './turnOn'
 import { turnOffHandler } from './turnOff'
 import { setBrightnessHandler } from './setBrightness'

@@ -1,5 +1,5 @@
-import { Hermes, Done } from 'hermes-javascript'
-import { config, i18n, logger } from 'snips-toolkit'
+import { Hermes, Done } from 'hermes-protocol'
+import { config, i18n, logger } from 'hermod-toolkit'
 import handlers from './handlers'
 import { yeeFactory } from './factories'
 

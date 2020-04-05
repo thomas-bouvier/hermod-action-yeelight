@@ -1,4 +1,4 @@
-import { logger } from 'snips-toolkit'
+import { logger } from 'hermod-toolkit'
 import { Client, Yeelight } from 'yeelight-node-binding'
 
 const yeelights: Yeelight[] = []

@@ -1,4 +1,4 @@
-import { i18n } from 'snips-toolkit'
+import { i18n } from 'hermod-toolkit'
 
 export const translation = {
     setBrightnessToSpeech(currentBrightness: number, newBrightness: number, wasOff: boolean): string {

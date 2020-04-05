@@ -1,6 +1,6 @@
 
 import { Yeelight } from 'yeelight-node-binding'
-import { config } from 'snips-toolkit'
+import { config } from 'hermod-toolkit'
 import { yeeFactory } from '../../factories'
 
 function getAllLights(siteId: string, returnAll: boolean = false): Yeelight[] {

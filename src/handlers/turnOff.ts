@@ -1,7 +1,7 @@
-import { NluSlot, slotType } from 'hermes-javascript/types'
+import { NluSlot, slotType } from 'hermes-protocol/types'
 import { utils } from '../utils/yeelight'
 import { Yeelight } from 'yeelight-node-binding'
-import { i18n, message, Handler } from 'snips-toolkit'
+import { i18n, message, Handler } from 'hermod-toolkit'
 import { SLOT_CONFIDENCE_THRESHOLD } from '../constants'
 
 export const turnOffHandler: Handler = async function (msg, flow) {

@@ -1,7 +1,7 @@
 import { setupVars } from './setup'
 import { MqttClient } from 'mqtt'
 import uuid from 'uuid/v4'
-import { ContinueSessionMessage, EndSessionMessage } from 'hermes-javascript'
+import { ContinueSessionMessage, EndSessionMessage } from 'hermes-protocol'
 
 export default class Session {
     private mqtt: MqttClient
